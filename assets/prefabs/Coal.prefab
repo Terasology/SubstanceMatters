@@ -1,0 +1,8 @@
+{
+    "substance": {
+        "name": "Coal",
+        "hue": 200,
+        "saturationScale": 1,
+        "brightnessScale": 0.1
+    }
+}

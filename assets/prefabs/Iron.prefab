@@ -1,0 +1,11 @@
+{
+    "substance": {
+        "name": "Iron",
+        "hue": 200,
+        "saturationScale": 0.2,
+        "brightnessScale": 1
+    },
+    "IncreaseToolDurability": {
+        "amount": 100
+     }
+}

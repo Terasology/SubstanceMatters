@@ -1,0 +1,10 @@
+{
+    "OreGenDefinition" :  {},
+    "DepthPocketOreGen" :
+    {
+        "block" : "SubstanceMatters:TinOre",
+        "frequency" : 1,
+        "depth" : 74,
+        "depthRange" : 22
+    }
+}

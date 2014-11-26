@@ -36,7 +36,7 @@ public class MaterialCompositionComponent implements Component {
     /**
      * A map of the substance prefab and how much is contained
      */
-    public Map<Prefab, Float> contents = Maps.newHashMap();
+    public Map<String, Float> contents = Maps.newHashMap();
 
     public MaterialCompositionComponent() {
     }
@@ -46,7 +46,7 @@ public class MaterialCompositionComponent implements Component {
         for (EntityRef item : items) {
             MaterialCompositionComponent itemMaterialComposition = item.getComponent(MaterialCompositionComponent.class);
             if (itemMaterialComposition != null) {
-                for (Map.Entry<Prefab, Float> entry : itemMaterialComposition.contents.entrySet()) {
+                for (Map.Entry<String, Float> entry : itemMaterialComposition.contents.entrySet()) {
                     addSubstance(entry.getKey(), entry.getValue().floatValue());
                 }
             }
@@ -59,19 +59,20 @@ public class MaterialCompositionComponent implements Component {
     }
 
     public void addSubstance(Prefab substance, float amount) {
+        String substanceUri = substance.getURI().toSimpleString();
         float previousAmount = 0f;
-        if (contents.containsKey(substance)) {
-            previousAmount = contents.get(substance);
+        if (contents.containsKey(substanceUri)) {
+            previousAmount = contents.get(substanceUri);
         }
-        contents.put(substance, previousAmount + amount);
+        contents.put(substanceUri, previousAmount + amount);
     }
 
-    public List<Map.Entry<Prefab, Float>> getSortedByAmountDesc() {
-        List<Map.Entry<Prefab, Float>> sortedMaterials = Lists.newLinkedList(contents.entrySet());
+    public List<Map.Entry<String, Float>> getSortedByAmountDesc() {
+        List<Map.Entry<String, Float>> sortedMaterials = Lists.newLinkedList(contents.entrySet());
         // sort desc
-        Collections.sort(sortedMaterials, new Comparator<Map.Entry<Prefab, Float>>() {
+        Collections.sort(sortedMaterials, new Comparator<Map.Entry<String, Float>>() {
             @Override
-            public int compare(Map.Entry<Prefab, Float> o1, Map.Entry<Prefab, Float> o2) {
+            public int compare(Map.Entry<String, Float> o1, Map.Entry<String, Float> o2) {
                 return o2.getValue().compareTo(o1.getValue());
             }
         });
@@ -80,7 +81,7 @@ public class MaterialCompositionComponent implements Component {
     }
 
     public String getPrimarySubstance() {
-        return getSortedByAmountDesc().get(0).getKey().getName();
+        return getSortedByAmountDesc().get(0).getKey();
     }
 
     @Override

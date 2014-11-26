@@ -17,7 +17,6 @@ package org.terasology.substanceMatters.processParts;
 
 import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
@@ -44,8 +43,8 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         MaterialCompositionComponent materialComposition = processEntity.getComponent(MaterialCompositionComponent.class);
         if (materialItem != null && materialComposition != null) {
             MaterialCompositionComponent newMaterialComposition = new MaterialCompositionComponent();
-            for (Map.Entry<Prefab, Float> substance : materialComposition.contents.entrySet()) {
-                newMaterialComposition.contents.put(substance.getKey(), substance.getValue() / amount);
+            for (Map.Entry<String, Float> substance : materialComposition.contents.entrySet()) {
+                newMaterialComposition.addSubstance(substance.getKey(), substance.getValue() / amount);
             }
             entityRef.addComponent(materialComposition);
         }

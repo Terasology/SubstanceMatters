@@ -16,13 +16,14 @@
 package org.terasology.substanceMatters.processParts;
 
 import com.google.common.collect.Maps;
+import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.workstation.process.ProcessPart;
 
 import java.util.Map;
 
-public class InjectSubstanceComponent implements ProcessPart {
+public class InjectSubstanceComponent implements Component, ProcessPart {
     /**
      * A map of substance prefab and how much is added
      */

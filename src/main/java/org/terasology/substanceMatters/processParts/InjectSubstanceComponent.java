@@ -32,6 +32,7 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
 
     @Override
     public boolean validateBeforeStart(EntityRef instigator, EntityRef workstation, EntityRef processEntity) {
+        addMaterialComposition(processEntity);
         return true;
     }
 
@@ -42,6 +43,11 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
 
     @Override
     public void executeStart(EntityRef instigator, EntityRef workstation, EntityRef processEntity) {
+        // the processEntity is reused from when validation happens.
+        //addMaterialComposition(processEntity);
+    }
+
+    private void addMaterialComposition(EntityRef processEntity) {
         MaterialCompositionComponent materialCompositionComponent = processEntity.getComponent(MaterialCompositionComponent.class);
         if (materialCompositionComponent == null) {
             materialCompositionComponent = new MaterialCompositionComponent();
@@ -49,6 +55,12 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
 
         for (Map.Entry<String, Float> entry : add.entrySet()) {
             materialCompositionComponent.addSubstance(entry.getKey(), entry.getValue());
+        }
+
+        if (processEntity.hasComponent(MaterialCompositionComponent.class)) {
+            processEntity.saveComponent(materialCompositionComponent);
+        } else {
+            processEntity.addComponent(materialCompositionComponent);
         }
     }
 

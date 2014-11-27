@@ -42,6 +42,10 @@ public class MaterialCompositionComponent implements Component {
     }
 
     public MaterialCompositionComponent(Iterable<EntityRef> items) {
+        addMaterialFromItems(items);
+    }
+
+    public void addMaterialFromItems(Iterable<EntityRef> items) {
         // loop through all inputed items, extracting all substance amounts
         for (EntityRef item : items) {
             MaterialCompositionComponent itemMaterialComposition = item.getComponent(MaterialCompositionComponent.class);
@@ -82,6 +86,10 @@ public class MaterialCompositionComponent implements Component {
 
     public String getPrimarySubstance() {
         return getSortedByAmountDesc().get(0).getKey();
+    }
+
+    public boolean hasSubstance() {
+        return contents.size() > 0;
     }
 
     @Override

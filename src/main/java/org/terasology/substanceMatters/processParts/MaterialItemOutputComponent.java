@@ -15,15 +15,19 @@
  */
 package org.terasology.substanceMatters.processParts;
 
+import org.terasology.asset.Assets;
 import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;
+import org.terasology.entitySystem.prefab.Prefab;
+import org.terasology.logic.common.DisplayNameComponent;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
+import org.terasology.substanceMatters.components.SubstanceComponent;
+import org.terasology.workstation.process.inventory.InventoryInputComponent;
 import org.terasology.workstation.process.inventory.InventoryOutputComponent;
 
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -39,15 +43,32 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
 
         Set<EntityRef> result = new HashSet<>();
         EntityRef entityRef = entityManager.create(item);
-        MaterialItemComponent materialItem = entityRef.getComponent(MaterialItemComponent.class);
+
+        // grab the material composition from the process entity and the input items
         MaterialCompositionComponent materialComposition = processEntity.getComponent(MaterialCompositionComponent.class);
-        if (materialItem != null && materialComposition != null) {
-            MaterialCompositionComponent newMaterialComposition = new MaterialCompositionComponent();
-            for (Map.Entry<String, Float> substance : materialComposition.contents.entrySet()) {
-                newMaterialComposition.addSubstance(substance.getKey(), substance.getValue() / amount);
-            }
+        if (materialComposition == null) {
+            materialComposition = new MaterialCompositionComponent();
+        }
+        InventoryInputComponent.InventoryInputProcessPartItemsComponent inputItemsContainer = processEntity.getComponent(InventoryInputComponent.InventoryInputProcessPartItemsComponent.class);
+        if (inputItemsContainer != null) {
+            materialComposition.addMaterialFromItems(inputItemsContainer.items);
+        }
+        if (materialComposition.hasSubstance()) {
             entityRef.addComponent(materialComposition);
         }
+
+        // set the display name if this is a materialItem
+        MaterialItemComponent materialItem = entityRef.getComponent(MaterialItemComponent.class);
+        DisplayNameComponent displayNameComponent = entityRef.getComponent(DisplayNameComponent.class);
+        if (materialItem != null && displayNameComponent != null && materialComposition.hasSubstance()) {
+            Prefab substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance());
+            SubstanceComponent substanceComponent = substancePrefab.getComponent(SubstanceComponent.class);
+            if (substanceComponent != null) {
+                displayNameComponent.name = substanceComponent.name + " " + displayNameComponent.name;
+                entityRef.saveComponent(displayNameComponent);
+            }
+        }
+
         result.add(entityRef);
 
         return result;

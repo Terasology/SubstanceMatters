@@ -23,6 +23,7 @@ import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
+import org.terasology.substanceMatters.SubstanceMattersUtil;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
@@ -52,7 +53,7 @@ public class MaterialItemClientSystem extends BaseComponentSystem {
     private void setIcon(EntityRef entityRef, MaterialItemComponent materialItem, MaterialCompositionComponent materialComposition) {
         Prefab substancePrefab;
         if (materialComposition == null) {
-            substancePrefab = Assets.getPrefab("SubstanceMatters:UnknownSubstance");
+            substancePrefab = Assets.getPrefab(SubstanceMattersUtil.UNKNOWNSUBSTANCE);
         } else {
             substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance());
         }

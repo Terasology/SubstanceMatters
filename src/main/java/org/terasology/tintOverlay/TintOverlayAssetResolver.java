@@ -50,7 +50,9 @@ public class TintOverlayAssetResolver implements AssetResolver<Texture, TextureD
 
         List<String> parameters = Lists.newArrayList();
         for (Map.Entry<String, TintOverlayIconComponent.TintParameter> entry : hueTextures.entrySet()) {
-            parameters.add(entry.getValue().toDelimitedString() + ">" + entry.getKey());
+            if (!entry.getValue().invisible) {
+                parameters.add(entry.getValue().toDelimitedString() + ">" + entry.getKey());
+            }
         }
         sb.append(Joiner.on(",").join(parameters));
         return sb.toString();

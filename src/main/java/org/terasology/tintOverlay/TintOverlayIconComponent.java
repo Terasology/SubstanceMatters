@@ -17,6 +17,9 @@ package org.terasology.tintOverlay;
 
 import com.google.common.base.Joiner;
 import com.google.common.collect.Maps;
+import org.terasology.asset.AssetType;
+import org.terasology.asset.AssetUri;
+import org.terasology.asset.Assets;
 import org.terasology.entitySystem.Component;
 import org.terasology.reflection.MappedContainer;
 
@@ -24,6 +27,18 @@ import java.util.Map;
 
 public class TintOverlayIconComponent implements Component {
     public Map<String, TintParameter> texture = Maps.newHashMap();
+
+    public TintParameter getTintParameterForIcon(String iconUri) {
+        for (Map.Entry<String, TintParameter> overlayItem : texture.entrySet()) {
+            AssetUri toolItemIcon = Assets.resolveAssetUri(AssetType.SUBTEXTURE, overlayItem.getKey());
+            AssetUri inputItemIcon = Assets.resolveAssetUri(AssetType.SUBTEXTURE, iconUri);
+            if (toolItemIcon.equals(inputItemIcon)) {
+                return overlayItem.getValue();
+            }
+        }
+
+        return null;
+    }
 
     @MappedContainer
     public static class TintParameter {
@@ -49,6 +64,8 @@ public class TintOverlayIconComponent implements Component {
          * positive values shift down, negative values shift up
          */
         public int shiftY = 0;
+
+        public boolean invisible = false;
 
         public TintParameter(Integer hue, float brightnessScale, float saturationScale, int shiftX, int shiftY) {
             this.hue = hue;

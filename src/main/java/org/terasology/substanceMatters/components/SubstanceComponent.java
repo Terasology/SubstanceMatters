@@ -22,6 +22,7 @@ import org.terasology.entitySystem.Component;
  */
 public class SubstanceComponent implements Component {
     public String name;
+    public String description = "";
     public int hue;
     public float saturationScale = 1f;
     public float brightnessScale = 1f;

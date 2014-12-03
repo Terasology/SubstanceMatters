@@ -3,8 +3,23 @@
     "DepthPocketOreGen" :
     {
         "block" : "Core:CoalOre",
-        "frequency" : 1,
         "depth" : 138,
-        "depthRange" : 118
+        "depthRange" : 128,
+        "frequency" : 20,
+        "frequencyRange" : 0,
+        "radius" : 4,
+        "radiusRange" : 1,
+        "thickness" : 3,
+        "thicknessRange" : 0,
+        "angle" : 1,
+        "angleRange" : 1,
+        "multiplier" : 1,
+        "multiplierRange" : 0,
+        "density" : 0.25,
+        "densityRange" : 0.15,
+        "noiseLevel" : 0.01,
+        "noiseLevelRange" : 0,
+        "noiseCutoff" : 0,
+        "noiseCutoffRange" : 0
     }
 }

@@ -20,6 +20,7 @@ import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.logic.common.DisplayNameComponent;
+import org.terasology.logic.inventory.ItemComponent;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
@@ -53,9 +54,16 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         if (inputItemsContainer != null) {
             materialComposition.addMaterialFromItems(inputItemsContainer.items);
         }
+
         if (materialComposition.hasSubstance()) {
+            materialComposition.divide(amount);
             entityRef.addComponent(materialComposition);
         }
+
+        // set the stack size
+        ItemComponent itemComponent = entityRef.getComponent(ItemComponent.class);
+        itemComponent.stackCount = (byte) amount;
+        entityRef.saveComponent(itemComponent);
 
         // set the display name if this is a materialItem
         MaterialItemComponent materialItem = entityRef.getComponent(MaterialItemComponent.class);

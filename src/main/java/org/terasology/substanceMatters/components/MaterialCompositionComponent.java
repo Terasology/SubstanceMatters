@@ -108,4 +108,10 @@ public class MaterialCompositionComponent implements Component {
     public int hashCode() {
         return getPrimarySubstance().hashCode();
     }
+
+    public void divide(float divisor) {
+        for (Map.Entry<String, Float> entry : contents.entrySet()) {
+            entry.setValue(entry.getValue() / divisor);
+        }
+    }
 }

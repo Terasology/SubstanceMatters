@@ -46,4 +46,4 @@ TestModule/assets/prefabs/nugget.prefab
 ```
 
 ##Testing out your materials
-Use can use the dot notation URI to create items with a particular substance on demand from the console. ```giveItem ModuleName:ItemName.ModuleName:SubstanceName```.  So for the above material/substance combo you would use ```giveItem TestModule:Nugget.TestModule:Copper```.  This will give you an item named "Copper Nugget" that will be tinted with hue 20 (an orange) with the texture "TestModule.Nugget" (make sure you have set up your texture atlas correctly).
+Use can use the dot notation URI to create items with a particular substance on demand from the console. ```giveItem <ItemUri>.<SubstanceUri>```.  So for the above material/substance combo you would use ```giveItem TestModule:Nugget.TestModule:Copper```.  This will give you an item named "Copper Nugget" that will be tinted with hue 20 (an orange) with the texture "TestModule.Nugget" (make sure you have set up your texture atlas correctly).

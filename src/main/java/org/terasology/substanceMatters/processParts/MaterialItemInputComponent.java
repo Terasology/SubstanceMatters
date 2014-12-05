@@ -20,6 +20,7 @@ import org.terasology.asset.AssetUri;
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.inventory.ItemComponent;
+import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.workstation.process.inventory.InventoryInputComponent;
 import org.terasology.workstation.process.inventory.ItemPrefabOutputComponent;
 
@@ -58,7 +59,13 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
             if (item == null) {
                 return false;
             }
-            return input.getParentPrefab().getURI().toSimpleString().toLowerCase().startsWith(prefab.toSimpleString().toLowerCase());
+            String inputItemUri = input.getParentPrefab().getURI().toSimpleString();
+            MaterialCompositionComponent materialCompositionComponent = input.getComponent(MaterialCompositionComponent.class);
+            if (materialCompositionComponent != null && materialCompositionComponent.hasSubstance()) {
+                inputItemUri += "." + materialCompositionComponent.getPrimarySubstance();
+            }
+
+            return inputItemUri.toLowerCase().startsWith(prefab.toSimpleString().toLowerCase());
         }
     }
 

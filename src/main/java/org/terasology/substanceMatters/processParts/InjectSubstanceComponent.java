@@ -20,6 +20,7 @@ import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.workstation.process.ProcessPart;
+import org.terasology.workstation.process.inventory.InventoryInputComponent;
 
 import java.util.Map;
 
@@ -29,10 +30,23 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
      */
     public Map<String, Float> add = Maps.newHashMap();
 
+    public Map<String, String> replace = Maps.newHashMap();
 
     @Override
     public boolean validateBeforeStart(EntityRef instigator, EntityRef workstation, EntityRef processEntity) {
         addMaterialComposition(processEntity);
+
+        // replace any substances
+        InventoryInputComponent.InventoryInputProcessPartItemsComponent inputItems = processEntity.getComponent(InventoryInputComponent.InventoryInputProcessPartItemsComponent.class);
+        for (EntityRef item : inputItems.items) {
+            MaterialCompositionComponent materialCompositionComponent = item.getComponent(MaterialCompositionComponent.class);
+            if (materialCompositionComponent != null) {
+                for (Map.Entry<String, String> replacement : replace.entrySet()) {
+                    materialCompositionComponent.replaceSubstance(replacement.getKey(), replacement.getValue());
+                }
+            }
+        }
+
         return true;
     }
 

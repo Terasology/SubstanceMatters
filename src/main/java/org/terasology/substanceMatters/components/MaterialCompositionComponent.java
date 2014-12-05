@@ -57,18 +57,30 @@ public class MaterialCompositionComponent implements Component {
         }
     }
 
-    public void addSubstance(String substance, float amount) {
+    public void addSubstance(String substance, Float amount) {
         Prefab substancePrefab = Assets.getPrefab(substance);
         addSubstance(substancePrefab, amount);
     }
 
-    public void addSubstance(Prefab substance, float amount) {
-        String substanceUri = substance.getURI().toSimpleString();
-        float previousAmount = 0f;
-        if (contents.containsKey(substanceUri)) {
-            previousAmount = contents.get(substanceUri);
+    public void addSubstance(Prefab substance, Float amount) {
+        if (amount != null) {
+            String substanceUri = substance.getURI().toSimpleString();
+            float previousAmount = 0f;
+            if (contents.containsKey(substanceUri)) {
+                previousAmount = contents.get(substanceUri);
+            }
+            contents.put(substanceUri, previousAmount + amount);
         }
-        contents.put(substanceUri, previousAmount + amount);
+    }
+
+    public Float removeSubstance(String substance) {
+        Prefab substancePrefab = Assets.getPrefab(substance);
+        return removeSubstance(substancePrefab);
+    }
+
+    public Float removeSubstance(Prefab substance) {
+        String substanceUri = substance.getURI().toSimpleString();
+        return contents.remove(substanceUri);
     }
 
     public List<Map.Entry<String, Float>> getSortedByAmountDesc() {
@@ -113,5 +125,10 @@ public class MaterialCompositionComponent implements Component {
         for (Map.Entry<String, Float> entry : contents.entrySet()) {
             entry.setValue(entry.getValue() / divisor);
         }
+    }
+
+    public void replaceSubstance(String existingSubstance, String replacementSubstance) {
+        Float amount = removeSubstance(existingSubstance);
+        addSubstance(replacementSubstance, amount);
     }
 }

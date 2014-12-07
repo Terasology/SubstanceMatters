@@ -20,7 +20,7 @@ import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.workstation.process.ProcessPart;
-import org.terasology.workstation.process.inventory.InventoryInputComponent;
+import org.terasology.workstation.process.inventory.InventoryInputProcessPartItemsComponent;
 
 import java.util.Map;
 
@@ -37,7 +37,7 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
         addMaterialComposition(processEntity);
 
         // replace any substances
-        InventoryInputComponent.InventoryInputProcessPartItemsComponent inputItems = processEntity.getComponent(InventoryInputComponent.InventoryInputProcessPartItemsComponent.class);
+        InventoryInputProcessPartItemsComponent inputItems = processEntity.getComponent(InventoryInputProcessPartItemsComponent.class);
         for (EntityRef item : inputItems.items) {
             MaterialCompositionComponent materialCompositionComponent = item.getComponent(MaterialCompositionComponent.class);
             if (materialCompositionComponent != null) {

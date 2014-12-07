@@ -25,7 +25,7 @@ import org.terasology.registry.CoreRegistry;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
-import org.terasology.workstation.process.inventory.InventoryInputComponent;
+import org.terasology.workstation.process.inventory.InventoryInputProcessPartItemsComponent;
 import org.terasology.workstation.process.inventory.InventoryOutputComponent;
 
 import java.util.HashSet;
@@ -50,7 +50,7 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         if (materialComposition == null) {
             materialComposition = new MaterialCompositionComponent();
         }
-        InventoryInputComponent.InventoryInputProcessPartItemsComponent inputItemsContainer = processEntity.getComponent(InventoryInputComponent.InventoryInputProcessPartItemsComponent.class);
+        InventoryInputProcessPartItemsComponent inputItemsContainer = processEntity.getComponent(InventoryInputProcessPartItemsComponent.class);
         if (inputItemsContainer != null) {
             materialComposition.addMaterialFromItems(inputItemsContainer.items);
         }

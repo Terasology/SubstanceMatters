@@ -35,17 +35,22 @@ import org.terasology.tintOverlay.TintOverlayIconComponent;
 @RegisterSystem
 public class MaterialItemClientSystem extends BaseComponentSystem {
     @ReceiveEvent
-    public void onMaterialItemActivated(OnActivatedComponent event, EntityRef entityRef, MaterialItemComponent materialItem) {
+    public void onMaterialItemActivated(OnActivatedComponent event, EntityRef entityRef,
+                                        MaterialItemComponent materialItem) {
         setIcon(entityRef, materialItem, entityRef.getComponent(MaterialCompositionComponent.class));
     }
 
     @ReceiveEvent
-    public void onMaterialCompositionActivated(OnActivatedComponent event, EntityRef entityRef, MaterialItemComponent materialItem, MaterialCompositionComponent materialComposition) {
+    public void onMaterialCompositionActivated(OnActivatedComponent event, EntityRef entityRef,
+                                               MaterialItemComponent materialItem,
+                                               MaterialCompositionComponent materialComposition) {
         setIcon(entityRef, materialItem, materialComposition);
     }
 
     @ReceiveEvent
-    public void onMaterialCompositionChanged(OnChangedComponent event, EntityRef entityRef, MaterialItemComponent materialItem, MaterialCompositionComponent materialComposition) {
+    public void onMaterialCompositionChanged(OnChangedComponent event, EntityRef entityRef,
+                                             MaterialItemComponent materialItem,
+                                             MaterialCompositionComponent materialComposition) {
         setIcon(entityRef, materialItem, materialComposition);
     }
 

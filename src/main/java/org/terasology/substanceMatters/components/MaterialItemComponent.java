@@ -27,12 +27,18 @@ public class MaterialItemComponent implements Component {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         MaterialItemComponent that = (MaterialItemComponent) o;
 
-        if (icon != null ? !icon.equals(that.icon) : that.icon != null) return false;
+        if (icon != null ? !icon.equals(that.icon) : that.icon != null) {
+            return false;
+        }
 
         return true;
     }

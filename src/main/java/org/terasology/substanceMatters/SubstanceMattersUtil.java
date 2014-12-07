@@ -20,8 +20,11 @@ import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.substanceMatters.components.SubstanceComponent;
 import org.terasology.tintOverlay.TintOverlayIconComponent;
 
-public class SubstanceMattersUtil {
+public final class SubstanceMattersUtil {
     public static final String UNKNOWNSUBSTANCE = "SubstanceMatters:UnknownSubstance";
+
+    private SubstanceMattersUtil() {
+    }
 
     public static void setTintParametersFromSubstance(String substance, TintOverlayIconComponent.TintParameter tintParameter) {
         if (tintParameter != null) {

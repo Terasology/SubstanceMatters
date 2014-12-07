@@ -106,12 +106,18 @@ public class MaterialCompositionComponent implements Component {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         MaterialCompositionComponent that = (MaterialCompositionComponent) o;
 
-        if (!getPrimarySubstance().equals(that.getPrimarySubstance())) return false;
+        if (!getPrimarySubstance().equals(that.getPrimarySubstance())) {
+            return false;
+        }
 
         return true;
     }

@@ -46,6 +46,15 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
         return ItemPrefabOutputComponent.createOutputItems(itemCounts);
     }
 
+    @Override
+    public int getComplexity() {
+        int total = 0;
+        for (Integer count : itemCounts.values()) {
+            total += count;
+        }
+        return total * itemCounts.size();
+    }
+
     private static final class ItemPrefabPredicate implements Predicate<EntityRef> {
         private AssetUri prefab;
 
@@ -67,14 +76,5 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
 
             return inputItemUri.toLowerCase().startsWith(prefab.toSimpleString().toLowerCase());
         }
-    }
-
-    @Override
-    public int getComplexity() {
-        int total = 0;
-        for (Integer count : itemCounts.values()) {
-            total += count;
-        }
-        return total * itemCounts.size();
     }
 }

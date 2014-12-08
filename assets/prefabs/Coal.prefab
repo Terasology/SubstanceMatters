@@ -1,8 +1,8 @@
 {
-    "substance": {
-        "name": "Coal",
-        "hue": 200,
-        "saturationScale": 1,
-        "brightnessScale": 0.1
-    }
+  "substance": {
+    "name": "Coal",
+    "hue": 0,
+    "saturationScale": 0.1,
+    "brightnessScale": 0.4
+  }
 }

@@ -21,6 +21,7 @@ import org.terasology.asset.Assets;
 import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.prefab.Prefab;
+import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemDifferentiating;
 
 import java.util.Collections;
@@ -41,18 +42,12 @@ public class MaterialCompositionComponent implements Component {
     public MaterialCompositionComponent() {
     }
 
-    public MaterialCompositionComponent(Iterable<EntityRef> items) {
-        addMaterialFromItems(items);
-    }
-
-    public void addMaterialFromItems(Iterable<EntityRef> items) {
-        // loop through all inputed items, extracting all substance amounts
-        for (EntityRef item : items) {
-            MaterialCompositionComponent itemMaterialComposition = item.getComponent(MaterialCompositionComponent.class);
-            if (itemMaterialComposition != null) {
-                for (Map.Entry<String, Float> entry : itemMaterialComposition.contents.entrySet()) {
-                    addSubstance(entry.getKey(), entry.getValue().floatValue());
-                }
+    public void addMaterialFromItem(EntityRef item, int itemCount) {
+        // extract all substance amounts from this item
+        MaterialCompositionComponent itemMaterialComposition = item.getComponent(MaterialCompositionComponent.class);
+        if (itemMaterialComposition != null) {
+            for (Map.Entry<String, Float> entry : itemMaterialComposition.contents.entrySet()) {
+                addSubstance(entry.getKey(), entry.getValue().floatValue() * Math.min(itemCount, InventoryUtils.getStackCount(item)));
             }
         }
     }

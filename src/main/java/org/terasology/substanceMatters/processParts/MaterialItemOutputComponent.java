@@ -25,7 +25,6 @@ import org.terasology.registry.CoreRegistry;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
-import org.terasology.workstation.process.inventory.InventoryInputProcessPartItemsComponent;
 import org.terasology.workstation.process.inventory.InventoryOutputComponent;
 
 import java.util.HashSet;
@@ -45,14 +44,10 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         Set<EntityRef> result = new HashSet<>();
         EntityRef entityRef = entityManager.create(item);
 
-        // grab the material composition from the process entity and the input items
+        // grab the material composition from the process entity
         MaterialCompositionComponent materialComposition = processEntity.getComponent(MaterialCompositionComponent.class);
         if (materialComposition == null) {
             materialComposition = new MaterialCompositionComponent();
-        }
-        InventoryInputProcessPartItemsComponent inputItemsContainer = processEntity.getComponent(InventoryInputProcessPartItemsComponent.class);
-        if (inputItemsContainer != null) {
-            materialComposition.addMaterialFromItems(inputItemsContainer.items);
         }
 
         if (materialComposition.hasSubstance()) {

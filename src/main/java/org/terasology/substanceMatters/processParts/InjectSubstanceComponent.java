@@ -20,7 +20,6 @@ import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.workstation.process.ProcessPart;
-import org.terasology.workstation.process.inventory.InventoryInputProcessPartItemsComponent;
 
 import java.util.Map;
 
@@ -34,17 +33,25 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
 
     @Override
     public boolean validateBeforeStart(EntityRef instigator, EntityRef workstation, EntityRef processEntity) {
-        addMaterialComposition(processEntity);
+        MaterialCompositionComponent materialCompositionComponent = processEntity.getComponent(MaterialCompositionComponent.class);
+        if (materialCompositionComponent == null) {
+            materialCompositionComponent = new MaterialCompositionComponent();
+        }
+
+        // add new substances
+        for (Map.Entry<String, Float> entry : add.entrySet()) {
+            materialCompositionComponent.addSubstance(entry.getKey(), entry.getValue());
+        }
 
         // replace any substances
-        InventoryInputProcessPartItemsComponent inputItems = processEntity.getComponent(InventoryInputProcessPartItemsComponent.class);
-        for (EntityRef item : inputItems.items) {
-            MaterialCompositionComponent materialCompositionComponent = item.getComponent(MaterialCompositionComponent.class);
-            if (materialCompositionComponent != null) {
-                for (Map.Entry<String, String> replacement : replace.entrySet()) {
-                    materialCompositionComponent.replaceSubstance(replacement.getKey(), replacement.getValue());
-                }
-            }
+        for (Map.Entry<String, String> replacement : replace.entrySet()) {
+            materialCompositionComponent.replaceSubstance(replacement.getKey(), replacement.getValue());
+        }
+
+        if (processEntity.hasComponent(MaterialCompositionComponent.class)) {
+            processEntity.saveComponent(materialCompositionComponent);
+        } else {
+            processEntity.addComponent(materialCompositionComponent);
         }
 
         return true;
@@ -57,25 +64,6 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
 
     @Override
     public void executeStart(EntityRef instigator, EntityRef workstation, EntityRef processEntity) {
-        // the processEntity is reused from when validation happens.
-        //addMaterialComposition(processEntity);
-    }
-
-    private void addMaterialComposition(EntityRef processEntity) {
-        MaterialCompositionComponent materialCompositionComponent = processEntity.getComponent(MaterialCompositionComponent.class);
-        if (materialCompositionComponent == null) {
-            materialCompositionComponent = new MaterialCompositionComponent();
-        }
-
-        for (Map.Entry<String, Float> entry : add.entrySet()) {
-            materialCompositionComponent.addSubstance(entry.getKey(), entry.getValue());
-        }
-
-        if (processEntity.hasComponent(MaterialCompositionComponent.class)) {
-            processEntity.saveComponent(materialCompositionComponent);
-        } else {
-            processEntity.addComponent(materialCompositionComponent);
-        }
     }
 
     @Override

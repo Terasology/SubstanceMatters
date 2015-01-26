@@ -16,6 +16,8 @@
 package org.terasology.substanceMatters.processParts;
 
 import com.google.common.base.Predicate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.terasology.asset.AssetUri;
 import org.terasology.asset.Assets;
 import org.terasology.entitySystem.entity.EntityRef;
@@ -31,6 +33,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class MaterialItemInputComponent extends InventoryInputComponent {
+    private static final Logger logger = LoggerFactory.getLogger(MaterialItemInputComponent.class);
+
     public Map<String, Integer> itemCounts;
 
     @Override
@@ -64,7 +68,12 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
     protected Map<Predicate<EntityRef>, Integer> getInputItems() {
         Map<Predicate<EntityRef>, Integer> result = new HashMap<>();
         for (Map.Entry<String, Integer> itemCount : itemCounts.entrySet()) {
-            result.put(new ItemPrefabPredicate(Assets.getPrefab(itemCount.getKey()).getURI()), itemCount.getValue());
+            try {
+                result.put(new ItemPrefabPredicate(Assets.getPrefab(itemCount.getKey()).getURI()), itemCount.getValue());
+            } catch (Exception ex) {
+                logger.error("Bad item: " + itemCount.getKey());
+                throw ex;
+            }
         }
 
         return result;

@@ -60,6 +60,15 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         itemComponent.stackCount = (byte) amount;
         entityRef.saveComponent(itemComponent);
 
+        setDisplayName(entityRef, materialComposition);
+
+
+        result.add(entityRef);
+
+        return result;
+    }
+
+    public static void setDisplayName(EntityRef entityRef, MaterialCompositionComponent materialComposition) {
         // set the display name if this is a materialItem
         MaterialItemComponent materialItem = entityRef.getComponent(MaterialItemComponent.class);
         DisplayNameComponent displayNameComponent = entityRef.getComponent(DisplayNameComponent.class);
@@ -71,9 +80,5 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
                 entityRef.saveComponent(displayNameComponent);
             }
         }
-
-        result.add(entityRef);
-
-        return result;
     }
 }

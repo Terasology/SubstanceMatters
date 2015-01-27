@@ -57,7 +57,7 @@ public class MaterialItemClientSystem extends BaseComponentSystem {
 
     private void setIcon(EntityRef entityRef, MaterialItemComponent materialItem, MaterialCompositionComponent materialComposition) {
         Prefab substancePrefab;
-        if (materialComposition == null) {
+        if (materialComposition == null || materialComposition.contents.size() == 0) {
             substancePrefab = Assets.getPrefab(SubstanceMattersUtil.UNKNOWNSUBSTANCE);
         } else {
             substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance());

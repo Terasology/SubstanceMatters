@@ -42,6 +42,13 @@ public class MaterialCompositionComponent implements Component {
     public MaterialCompositionComponent() {
     }
 
+    public MaterialCompositionComponent copy() {
+        MaterialCompositionComponent newMaterialComposition = new MaterialCompositionComponent();
+        newMaterialComposition.contents = Maps.newHashMap(contents);
+        return newMaterialComposition;
+    }
+
+
     public void addMaterialFromItem(EntityRef item, int itemCount) {
         // extract all substance amounts from this item
         MaterialCompositionComponent itemMaterialComposition = item.getComponent(MaterialCompositionComponent.class);

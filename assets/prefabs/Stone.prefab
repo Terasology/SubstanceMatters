@@ -1,0 +1,8 @@
+{
+  "substance": {
+    "name": "Stone",
+    "hue": 200,
+    "saturationScale": 0.2,
+    "brightnessScale": 0.5
+  }
+}

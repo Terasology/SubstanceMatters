@@ -21,8 +21,10 @@ import org.terasology.asset.Assets;
 import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.prefab.Prefab;
+import org.terasology.entitySystem.prefab.PrefabManager;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemDifferentiating;
+import org.terasology.registry.CoreRegistry;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -138,5 +140,24 @@ public class MaterialCompositionComponent implements Component {
     public void replaceSubstance(String existingSubstance, String replacementSubstance) {
         Float amount = removeSubstance(existingSubstance);
         addSubstance(replacementSubstance, amount);
+    }
+
+    public String toDisplayString() {
+        PrefabManager prefabManager = CoreRegistry.get(PrefabManager.class);
+        String display = "";
+        for (Map.Entry<String, Float> substanceAmount : getSortedByAmountDesc()) {
+            String substanceName = substanceAmount.getKey();
+            Prefab substancePrefab = prefabManager.getPrefab(substanceAmount.getKey());
+            if (substancePrefab != null) {
+                SubstanceComponent substanceComponent = substancePrefab.getComponent(SubstanceComponent.class);
+                if (substanceComponent != null) {
+                    substanceName = substanceComponent.name;
+                }
+            }
+            display += substanceAmount.getValue() + " " + substanceName + "\n";
+        }
+
+        display = display.trim();
+        return display;
     }
 }

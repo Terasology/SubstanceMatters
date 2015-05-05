@@ -1,11 +1,9 @@
 {
     "OreGenDefinition" :  {},
-    "DepthPocketOreGen" :
+    "PocketOreGen":
     {
         "block" : "Core:CopperOre",
-        "depth" : 74,
-        "depthRange" : 54,
-        "frequency" : 10,
+        "frequency": 1,
         "frequencyRange" : 0,
         "radius" : 1.5,
         "radiusRange" : 0.5,

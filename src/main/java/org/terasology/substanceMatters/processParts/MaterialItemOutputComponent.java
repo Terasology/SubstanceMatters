@@ -73,7 +73,7 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         MaterialItemComponent materialItem = entityRef.getComponent(MaterialItemComponent.class);
         DisplayNameComponent displayNameComponent = entityRef.getComponent(DisplayNameComponent.class);
         if (materialItem != null && displayNameComponent != null && materialComposition.hasSubstance()) {
-            Prefab substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance());
+            Prefab substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance()).get();
             SubstanceComponent substanceComponent = substancePrefab.getComponent(SubstanceComponent.class);
             if (substanceComponent != null) {
                 displayNameComponent.name = substanceComponent.name + " " + displayNameComponent.name;

@@ -29,6 +29,8 @@ import org.terasology.substanceMatters.components.MaterialItemComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
 import org.terasology.tintOverlay.TintOverlayIconComponent;
 
+import java.util.Optional;
+
 /**
  * Creates an icon on the fly for items with the MaterialItemComponent using the TintOverlay system
  */
@@ -56,18 +58,18 @@ public class MaterialItemClientSystem extends BaseComponentSystem {
 
 
     private void setIcon(EntityRef entityRef, MaterialItemComponent materialItem, MaterialCompositionComponent materialComposition) {
-        Prefab substancePrefab;
+        Optional<Prefab> substancePrefab;
         if (materialComposition == null || materialComposition.contents.size() == 0) {
             substancePrefab = Assets.getPrefab(SubstanceMattersUtil.UNKNOWNSUBSTANCE);
         } else {
             substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance());
         }
 
-        if (substancePrefab == null) {
+        if (!substancePrefab.isPresent()) {
             return;
         }
 
-        SubstanceComponent substance = substancePrefab.getComponent(SubstanceComponent.class);
+        SubstanceComponent substance = substancePrefab.get().getComponent(SubstanceComponent.class);
         TintOverlayIconComponent tintOverlayIconComponent = new TintOverlayIconComponent();
         tintOverlayIconComponent.texture.put(materialItem.icon,
                 new TintOverlayIconComponent.TintParameter(

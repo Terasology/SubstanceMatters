@@ -62,13 +62,13 @@ public class MaterialCompositionComponent implements Component {
     }
 
     public void addSubstance(String substance, Float amount) {
-        Prefab substancePrefab = Assets.getPrefab(substance);
+        Prefab substancePrefab = Assets.getPrefab(substance).get();
         addSubstance(substancePrefab, amount);
     }
 
     public void addSubstance(Prefab substance, Float amount) {
         if (amount != null) {
-            String substanceUri = substance.getURI().toSimpleString();
+            String substanceUri = substance.getName();
             float previousAmount = 0f;
             if (contents.containsKey(substanceUri)) {
                 previousAmount = contents.get(substanceUri);
@@ -78,12 +78,12 @@ public class MaterialCompositionComponent implements Component {
     }
 
     public Float removeSubstance(String substance) {
-        Prefab substancePrefab = Assets.getPrefab(substance);
+        Prefab substancePrefab = Assets.getPrefab(substance).get();
         return removeSubstance(substancePrefab);
     }
 
     public Float removeSubstance(Prefab substance) {
-        String substanceUri = substance.getURI().toSimpleString();
+        String substanceUri = substance.getName();
         return contents.remove(substanceUri);
     }
 

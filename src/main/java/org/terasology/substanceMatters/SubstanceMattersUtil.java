@@ -20,6 +20,8 @@ import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.substanceMatters.components.SubstanceComponent;
 import org.terasology.tintOverlay.TintOverlayIconComponent;
 
+import java.util.Optional;
+
 public final class SubstanceMattersUtil {
     public static final String UNKNOWNSUBSTANCE = "SubstanceMatters:UnknownSubstance";
 
@@ -28,11 +30,14 @@ public final class SubstanceMattersUtil {
 
     public static void setTintParametersFromSubstance(String substance, TintOverlayIconComponent.TintParameter tintParameter) {
         if (tintParameter != null) {
-            Prefab substancePrefab = Assets.getPrefab(substance);
-            if (substancePrefab == null) {
+            Optional<Prefab> substancePrefab;
+            if (substance == null) {
                 substancePrefab = Assets.getPrefab(UNKNOWNSUBSTANCE);
+            } else {
+                substancePrefab = Assets.getPrefab(substance);
             }
-            SubstanceComponent substanceComponent = substancePrefab.getComponent(SubstanceComponent.class);
+
+            SubstanceComponent substanceComponent = substancePrefab.get().getComponent(SubstanceComponent.class);
             tintParameter.hue = substanceComponent.hue;
             tintParameter.brightnessScale = substanceComponent.brightnessScale;
             tintParameter.saturationScale = substanceComponent.saturationScale;

@@ -18,8 +18,8 @@ package org.terasology.substanceMatters.processParts;
 import com.google.common.base.Predicate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.asset.AssetUri;
 import org.terasology.asset.Assets;
+import org.terasology.assets.ResourceUrn;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemComponent;
@@ -69,7 +69,7 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
         Map<Predicate<EntityRef>, Integer> result = new HashMap<>();
         for (Map.Entry<String, Integer> itemCount : itemCounts.entrySet()) {
             try {
-                result.put(new ItemPrefabPredicate(Assets.getPrefab(itemCount.getKey()).getURI()), itemCount.getValue());
+                result.put(new ItemPrefabPredicate(Assets.getPrefab(itemCount.getKey()).get().getUrn()), itemCount.getValue());
             } catch (Exception ex) {
                 logger.error("Bad item: " + itemCount.getKey());
                 throw ex;
@@ -94,9 +94,9 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
     }
 
     private static final class ItemPrefabPredicate implements Predicate<EntityRef> {
-        private AssetUri prefab;
+        private ResourceUrn prefab;
 
-        private ItemPrefabPredicate(AssetUri prefab) {
+        private ItemPrefabPredicate(ResourceUrn prefab) {
             this.prefab = prefab;
         }
 
@@ -106,13 +106,13 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
             if (item == null) {
                 return false;
             }
-            String inputItemUri = input.getParentPrefab().getURI().toSimpleString();
+            String inputItemUri = input.getParentPrefab().getName();
             MaterialCompositionComponent materialCompositionComponent = input.getComponent(MaterialCompositionComponent.class);
             if (materialCompositionComponent != null && materialCompositionComponent.hasSubstance()) {
-                inputItemUri += "." + materialCompositionComponent.getPrimarySubstance();
+                inputItemUri += "#" + materialCompositionComponent.getPrimarySubstance();
             }
 
-            return inputItemUri.toLowerCase().startsWith(prefab.toSimpleString().toLowerCase());
+            return inputItemUri.toLowerCase().startsWith(prefab.toString().toLowerCase());
         }
     }
 }

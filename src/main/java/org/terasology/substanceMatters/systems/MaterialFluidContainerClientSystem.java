@@ -20,6 +20,7 @@ import org.terasology.entitySystem.entity.lifecycleEvents.OnActivatedComponent;
 import org.terasology.entitySystem.entity.lifecycleEvents.OnChangedComponent;
 import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
+import org.terasology.entitySystem.systems.RegisterMode;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.fluid.component.FluidContainerItemComponent;
 import org.terasology.substanceMatters.SubstanceMattersUtil;
@@ -29,7 +30,7 @@ import org.terasology.tintOverlay.TintOverlayIconComponent;
 /**
  * Creates an icon on the fly for items with the MaterialItemComponent using the TintOverlay system
  */
-@RegisterSystem
+@RegisterSystem(RegisterMode.CLIENT)
 public class MaterialFluidContainerClientSystem extends BaseComponentSystem {
 
     @ReceiveEvent

@@ -16,6 +16,7 @@
 package org.terasology.substanceMatters.processParts;
 
 import org.terasology.asset.Assets;
+import org.terasology.entitySystem.entity.EntityBuilder;
 import org.terasology.entitySystem.entity.EntityManager;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.prefab.Prefab;
@@ -42,7 +43,8 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
         EntityManager entityManager = CoreRegistry.get(EntityManager.class);
 
         Set<EntityRef> result = new HashSet<>();
-        EntityRef entityRef = entityManager.create(item);
+        EntityBuilder entityBuilder = entityManager.newBuilder(item);
+        entityBuilder.setPersistent(processEntity.isPersistent());
 
         // grab the material composition from the process entity
         MaterialCompositionComponent materialComposition = processEntity.getComponent(MaterialCompositionComponent.class);
@@ -52,32 +54,31 @@ public class MaterialItemOutputComponent extends InventoryOutputComponent {
 
         if (materialComposition.hasSubstance()) {
             materialComposition.divide(amount);
-            entityRef.addComponent(materialComposition);
+            entityBuilder.addComponent(materialComposition);
         }
 
         // set the stack size
-        ItemComponent itemComponent = entityRef.getComponent(ItemComponent.class);
+        ItemComponent itemComponent = entityBuilder.getComponent(ItemComponent.class);
         itemComponent.stackCount = (byte) amount;
-        entityRef.saveComponent(itemComponent);
+        entityBuilder.saveComponent(itemComponent);
 
-        setDisplayName(entityRef, materialComposition);
+        setDisplayName(entityBuilder, materialComposition);
 
-
-        result.add(entityRef);
+        result.add(entityBuilder.build());
 
         return result;
     }
 
-    public static void setDisplayName(EntityRef entityRef, MaterialCompositionComponent materialComposition) {
+    public static void setDisplayName(EntityBuilder entityBuilder, MaterialCompositionComponent materialComposition) {
         // set the display name if this is a materialItem
-        MaterialItemComponent materialItem = entityRef.getComponent(MaterialItemComponent.class);
-        DisplayNameComponent displayNameComponent = entityRef.getComponent(DisplayNameComponent.class);
+        MaterialItemComponent materialItem = entityBuilder.getComponent(MaterialItemComponent.class);
+        DisplayNameComponent displayNameComponent = entityBuilder.getComponent(DisplayNameComponent.class);
         if (materialItem != null && displayNameComponent != null && materialComposition.hasSubstance()) {
             Prefab substancePrefab = Assets.getPrefab(materialComposition.getPrimarySubstance()).get();
             SubstanceComponent substanceComponent = substancePrefab.getComponent(SubstanceComponent.class);
             if (substanceComponent != null) {
                 displayNameComponent.name = substanceComponent.name + " " + displayNameComponent.name;
-                entityRef.saveComponent(displayNameComponent);
+                entityBuilder.saveComponent(displayNameComponent);
             }
         }
     }

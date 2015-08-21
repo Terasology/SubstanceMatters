@@ -81,7 +81,7 @@ public class MaterialItemInputComponent extends InventoryInputComponent {
 
     @Override
     protected Set<EntityRef> createItems() {
-        return ItemPrefabOutputComponent.createOutputItems(itemCounts);
+        return ItemPrefabOutputComponent.createOutputItems(itemCounts, false);
     }
 
     @Override

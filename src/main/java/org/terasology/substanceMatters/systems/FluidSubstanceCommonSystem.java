@@ -32,7 +32,7 @@ import org.terasology.substanceMatters.components.SubstanceComponent;
 import org.terasology.world.liquid.LiquidType;
 
 /**
- * Creates an icon on the fly for items with the MaterialItemComponent using the TintOverlay system
+ * Registers fluid from a prefab based on the presence of FluidSubstanceComponent
  */
 @RegisterSystem
 public class FluidSubstanceCommonSystem extends BaseComponentSystem {

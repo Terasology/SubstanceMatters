@@ -45,9 +45,9 @@ public class FluidSubstanceCommonSystem extends BaseComponentSystem {
         for (Prefab prefab : Iterables.transform(Assets.list(Prefab.class), x -> Assets.get(x, Prefab.class).get())) {
             if (prefab.hasComponent(FluidSubstanceComponent.class)) {
                 SubstanceComponent substanceComponent = prefab.getComponent(SubstanceComponent.class);
-                java.awt.Color awtColor = java.awt.Color.getHSBColor(substanceComponent.hue,
-                        Float.MAX_VALUE / 2f * substanceComponent.saturationScale,
-                        Float.MAX_VALUE / 2f * substanceComponent.brightnessScale);
+                java.awt.Color awtColor = java.awt.Color.getHSBColor(substanceComponent.hue / 360f,
+                        0.5f * substanceComponent.saturationScale,
+                        0.5f * substanceComponent.brightnessScale);
                 ResourceUrn fluidTextureUri = TextureUtil.getTextureUriForColor(new Color(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), awtColor.getAlpha()));
                 Texture texture = Assets.get(fluidTextureUri, Texture.class).get();
                 fluidRegistry.registerFluid(prefab.getName(), new TextureFluidRenderer(texture, substanceComponent.name), LiquidType.WATER);

@@ -3,7 +3,7 @@
     "PocketOreGen":
     {
         "block" : "SubstanceMatters:TinOre",
-        "frequency": 1,
+        "frequency": 6,
         "frequencyRange" : 0,
         "radius" : 1.5,
         "radiusRange" : 0.5,

@@ -33,8 +33,7 @@ TestModule/assets/prefabs/nugget.prefab
   "parent": "engine:iconItem",
   "Item": {
     "icon": "TestModule.Nugget",
-    "stackId": "TestModule:Nugget",
-    "renderWithIcon": true
+    "stackId": "TestModule:Nugget"
   },
   "DisplayName": {
     "name": "Nugget"

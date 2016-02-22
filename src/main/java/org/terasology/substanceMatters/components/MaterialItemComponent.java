@@ -21,8 +21,7 @@ import org.terasology.logic.inventory.ItemDifferentiating;
 /**
  * Attach this to items that are made of a particular substance.  The icon will be tinted to the substance's definition.
  */
-@ItemDifferentiating
-public class MaterialItemComponent implements Component {
+public class MaterialItemComponent implements Component, ItemDifferentiating {
     public String icon;
 
     @Override

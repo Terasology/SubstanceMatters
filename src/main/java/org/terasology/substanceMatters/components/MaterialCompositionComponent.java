@@ -34,8 +34,7 @@ import java.util.Map;
 /**
  * A list of the contents of an item.  Not intended to be added directly to a prefab with json.
  */
-@ItemDifferentiating
-public class MaterialCompositionComponent implements Component {
+public class MaterialCompositionComponent implements Component, ItemDifferentiating {
     /**
      * A map of the substance prefab and how much is contained
      */

@@ -16,7 +16,7 @@
 package org.terasology.substanceMatters.systems;
 
 import com.google.common.collect.Iterables;
-import org.terasology.asset.Assets;
+import org.terasology.utilities.Assets;
 import org.terasology.assets.ResourceUrn;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.entitySystem.systems.BaseComponentSystem;

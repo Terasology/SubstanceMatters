@@ -45,7 +45,11 @@ public class InjectSubstanceComponent implements Component, ProcessPart {
 
         // replace any substances
         for (Map.Entry<String, String> replacement : replace.entrySet()) {
-            materialCompositionComponent.replaceSubstance(replacement.getKey(), replacement.getValue());
+            if (materialCompositionComponent.contents.containsKey(replacement.getKey())) {
+                materialCompositionComponent.replaceSubstance(replacement.getKey(), replacement.getValue());
+            } else {
+                return false;
+            }
         }
 
         if (processEntity.hasComponent(MaterialCompositionComponent.class)) {

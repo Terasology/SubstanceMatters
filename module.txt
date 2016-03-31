@@ -1,12 +1,12 @@
 {
     "id" : "SubstanceMatters",
-    "version" : "0.1.1-SNAPSHOT",
+    "version" : "1.0.0-SNAPSHOT",
     "author" : "",
     "displayName" : "SubstanceMatters",
     "description" : "",
     "dependencies" : [
         {
-          "id": "Workstation", "minVersion": "0.1.0"
+          "id": "Workstation", "minVersion": "1.0.0"
         },
         {
             "id": "OreGeneration", "minVersion": "0.1.0"

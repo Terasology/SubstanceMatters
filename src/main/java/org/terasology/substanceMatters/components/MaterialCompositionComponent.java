@@ -17,7 +17,6 @@ package org.terasology.substanceMatters.components;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.terasology.utilities.Assets;
 import org.terasology.entitySystem.Component;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.prefab.Prefab;
@@ -25,6 +24,7 @@ import org.terasology.entitySystem.prefab.PrefabManager;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemDifferentiating;
 import org.terasology.registry.CoreRegistry;
+import org.terasology.utilities.Assets;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -55,8 +55,14 @@ public class MaterialCompositionComponent implements Component, ItemDifferentiat
         MaterialCompositionComponent itemMaterialComposition = item.getComponent(MaterialCompositionComponent.class);
         if (itemMaterialComposition != null) {
             for (Map.Entry<String, Float> entry : itemMaterialComposition.contents.entrySet()) {
-                addSubstance(entry.getKey(), entry.getValue().floatValue() * Math.min(itemCount, InventoryUtils.getStackCount(item)));
+                addSubstance(entry.getKey(), entry.getValue() * Math.min(itemCount, InventoryUtils.getStackCount(item)));
             }
+        }
+    }
+
+    public void addSubstance(MaterialCompositionComponent otherMaterialComposition) {
+        for (Map.Entry<String, Float> entry : otherMaterialComposition.contents.entrySet()) {
+            addSubstance(entry.getKey(), entry.getValue());
         }
     }
 
@@ -100,7 +106,11 @@ public class MaterialCompositionComponent implements Component, ItemDifferentiat
     }
 
     public String getPrimarySubstance() {
-        return getSortedByAmountDesc().get(0).getKey();
+        if (contents.size() == 0) {
+            return null;
+        } else {
+            return getSortedByAmountDesc().get(0).getKey();
+        }
     }
 
     public boolean hasSubstance() {
@@ -127,7 +137,12 @@ public class MaterialCompositionComponent implements Component, ItemDifferentiat
 
     @Override
     public int hashCode() {
-        return getPrimarySubstance().hashCode();
+        String substance = getPrimarySubstance();
+        if( substance != null) {
+            return substance.hashCode();
+        } else {
+            return super.hashCode();
+        }
     }
 
     public void divide(float divisor) {

@@ -3,7 +3,7 @@
     "PocketOreGen":
     {
         "block" : "Core:CoalOre",
-        "frequency": 5,
+        "frequency": 8,
         "frequencyRange" : 0,
         "radius" : 4,
         "radiusRange" : 1,

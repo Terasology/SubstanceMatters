@@ -45,4 +45,37 @@ TestModule/assets/prefabs/nugget.prefab
 ```
 
 ##Testing out your materials
-Use can use the dot notation URI to create items with a particular substance on demand from the console. ```giveItem <ItemUri>.<SubstanceUri>```.  So for the above material/substance combo you would use ```giveItem TestModule:Nugget.TestModule:Copper```.  This will give you an item named "Copper Nugget" that will be tinted with hue 20 (an orange) with the texture "TestModule.Nugget" (make sure you have set up your texture atlas correctly).
+Use the ```giveMaterialItem``` command to create materials to test with.
+
+Put this into your Terasology console to create copper nuggets with the above prefabs: ```giveMaterialItem nugget copper 10```.   This item will look like a nugget,  and have 10 copper substance attached to it.
+
+
+##Material Composition
+A list of the substance contents of an item.  Not intended to be added directly to a prefab with json.  Can be used to determine what substances are on an item and act accordingly.
+
+#Substance Matters for Fluids
+
+###Fluid Substances
+TestModule/assets/prefabs/poison.prefab
+```
+{
+...
+    "fluidSubstance": {},
+    "somePoisonAttribute": {
+        "deadly": "very yes"
+    }
+}
+```
+
+###Material Fluid Containers  
+TestModule/assets/prefabs/fluidBucket.prefab
+```
+{
+...
+  "MaterialFluidItemContainer": {
+    "fluidIcon": "TestModule.Nugget"
+  }
+}
+```
+
+

@@ -1,9 +1,9 @@
 {
     "id" : "SubstanceMatters",
     "version" : "1.0.0-SNAPSHOT",
-    "author" : "",
+    "author" : "Josharias, Cervator",
     "displayName" : "SubstanceMatters",
-    "description" : "",
+    "description" : "A library for defining and using materials",
     "dependencies" : [
         {
           "id": "Workstation", "minVersion": "1.0.0"

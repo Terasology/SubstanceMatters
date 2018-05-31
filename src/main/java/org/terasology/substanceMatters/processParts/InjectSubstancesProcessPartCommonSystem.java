@@ -69,6 +69,7 @@ public class InjectSubstancesProcessPartCommonSystem extends BaseComponentSystem
             }
 
             item.addOrSaveComponent(materialCompositionComponent);
+            TransferSubstancesProcessPartCommonSystem.setDisplayName(item, materialCompositionComponent);
         }
     }
 }

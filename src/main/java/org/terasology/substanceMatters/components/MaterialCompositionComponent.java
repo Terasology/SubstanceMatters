@@ -23,6 +23,7 @@ import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.entitySystem.prefab.PrefabManager;
 import org.terasology.logic.inventory.InventoryUtils;
 import org.terasology.logic.inventory.ItemDifferentiating;
+import org.terasology.network.Replicate;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.utilities.Assets;
 
@@ -38,6 +39,7 @@ public class MaterialCompositionComponent implements Component, ItemDifferentiat
     /**
      * A map of the substance prefab and how much is contained
      */
+    @Replicate
     public Map<String, Float> contents = Maps.newHashMap();
 
     public MaterialCompositionComponent() {
@@ -128,7 +130,9 @@ public class MaterialCompositionComponent implements Component, ItemDifferentiat
 
         MaterialCompositionComponent that = (MaterialCompositionComponent) o;
 
-        if (!getPrimarySubstance().equals(that.getPrimarySubstance())) {
+        // TODO: this needs to compare each of the content substances and amounts
+        String thisPrimarySubstance = getPrimarySubstance();
+        if (thisPrimarySubstance != null && !thisPrimarySubstance.equals(that.getPrimarySubstance())) {
             return false;
         }
 

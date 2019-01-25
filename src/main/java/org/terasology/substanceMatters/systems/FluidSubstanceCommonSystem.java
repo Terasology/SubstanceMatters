@@ -29,7 +29,6 @@ import org.terasology.rendering.assets.texture.TextureUtil;
 import org.terasology.rendering.nui.Color;
 import org.terasology.substanceMatters.components.FluidSubstanceComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
-import org.terasology.world.liquid.LiquidType;
 
 /**
  * Registers fluid from a prefab based on the presence of FluidSubstanceComponent
@@ -50,7 +49,7 @@ public class FluidSubstanceCommonSystem extends BaseComponentSystem {
                         0.5f * substanceComponent.brightnessScale);
                 ResourceUrn fluidTextureUri = TextureUtil.getTextureUriForColor(new Color(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), awtColor.getAlpha()));
                 Texture texture = Assets.get(fluidTextureUri, Texture.class).get();
-                fluidRegistry.registerFluid(prefab.getName(), new TextureFluidRenderer(texture, substanceComponent.name), LiquidType.WATER);
+                fluidRegistry.registerFluid(prefab.getName(), new TextureFluidRenderer(texture, substanceComponent.name));
             }
         }
     }

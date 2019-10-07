@@ -2,7 +2,7 @@
     "OreGenDefinition" :  {},
     "PocketOreGen":
     {
-        "block" : "Core:CoalOre",
+        "block" : "CoreBlocks:CoalOre",
         "frequency": 8,
         "frequencyRange" : 0,
         "radius" : 4,

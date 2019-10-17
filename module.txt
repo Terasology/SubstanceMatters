@@ -5,6 +5,8 @@
     "displayName" : "SubstanceMatters",
     "description" : "Adds systems for tracking the composition of items.  Also adds world generation for some core ores if OreGeneration is enabled.",
     "dependencies" : [
+        {"id": "CoreAssets", "minVersion": "1.0.0"},
+        {"id": "CoreBlocks", "minVersion": "1.0.0"},
         {"id": "Workstation", "minVersion": "1.0.0"},
         {"id": "OreGeneration", "minVersion": "1.0.0", "optional": true},
         {"id": "Fluid", "minVersion": "1.0.0"},

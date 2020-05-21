@@ -81,9 +81,9 @@ Can be used to determine what substances are on an item and act accordingly.
 ### Fluid Substances
 
 ```json5
-TestModule/assets/prefabs/poison.prefab
+// TestModule/assets/prefabs/poison.prefab
 {
-...
+    ...
     "fluidSubstance": {},
     "somePoisonAttribute": {
         "deadly": "very yes"
@@ -94,9 +94,9 @@ TestModule/assets/prefabs/poison.prefab
 ### Material Fluid Containers
 
 ```json5
-TestModule/assets/prefabs/fluidBucket.prefab
+// TestModule/assets/prefabs/fluidBucket.prefab
 {
-...
+  ...
   "MaterialFluidItemContainer": {
     "fluidIcon": "TestModule.Nugget"
   }

@@ -9,7 +9,7 @@
         { "id": "Fluid", "minVersion": "1.1.0" },
         { "id": "Inventory", "minVersion": "1.1.0" },
         { "id": "ItemRendering", "minVersion": "1.1.0" },
-        { "id": "OreGeneration", "minVersion": "1.0.0", "optional": true },
+        { "id": "OreGeneration", "minVersion": "2.0.0", "optional": true },
         { "id": "Workstation", "minVersion": "1.1.0" }
     ],
     "isServerSideOnly": false,

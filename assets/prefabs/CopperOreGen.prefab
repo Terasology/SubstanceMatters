@@ -1,6 +1,6 @@
 {
     "OreGenDefinition" :  {},
-    "PocketOreGen":
+    "PocketDensityOreGen":
     {
         "block" : "CoreAssets:CopperOre",
         "frequency": 10,
@@ -19,6 +19,6 @@
         "noiseLevelRange" : 0,
         "noiseCutoff" : 0,
         "noiseCutoffRange" : 0,
-        "densityCutoff" : 10
+        "minDensityoff" : 10
     }
 }

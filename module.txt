@@ -1,6 +1,6 @@
 {
     "id": "SubstanceMatters",
-    "version": "1.1.0",
+    "version": "1.0.1",
     "author": "The Terasology Foundation",
     "displayName": "SubstanceMatters",
     "description": "Adds systems for tracking the composition of items.  Also adds world generation for some core ores if OreGeneration is enabled.",

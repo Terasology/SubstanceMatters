@@ -17,16 +17,11 @@ package org.terasology.substanceMatters.systems;
 
 import com.google.common.collect.Iterables;
 import org.terasology.utilities.Assets;
-import org.terasology.assets.ResourceUrn;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.fluid.system.FluidRegistry;
-import org.terasology.fluid.system.TextureFluidRenderer;
 import org.terasology.registry.In;
-import org.terasology.rendering.assets.texture.Texture;
-import org.terasology.rendering.assets.texture.TextureUtil;
-import org.terasology.rendering.nui.Color;
 import org.terasology.substanceMatters.components.FluidSubstanceComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
 
@@ -47,9 +42,8 @@ public class FluidSubstanceCommonSystem extends BaseComponentSystem {
                 java.awt.Color awtColor = java.awt.Color.getHSBColor(substanceComponent.hue / 360f,
                         0.5f * substanceComponent.saturationScale,
                         0.5f * substanceComponent.brightnessScale);
-                ResourceUrn fluidTextureUri = TextureUtil.getTextureUriForColor(new Color(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue(), awtColor.getAlpha()));
-                Texture texture = Assets.get(fluidTextureUri, Texture.class).get();
-                fluidRegistry.registerFluid(prefab.getName(), new TextureFluidRenderer(texture, substanceComponent.name));
+                
+                fluidRegistry.registerFluid(prefab.getName(), substanceComponent.name, awtColor);
             }
         }
     }

@@ -10,11 +10,11 @@ import org.terasology.engine.entitySystem.prefab.Prefab;
 import org.terasology.engine.entitySystem.systems.BaseComponentSystem;
 import org.terasology.engine.entitySystem.systems.RegisterSystem;
 import org.terasology.engine.utilities.Assets;
+import org.terasology.itemRendering.tintOverlay.TintOverlayIconComponent;
 import org.terasology.substanceMatters.SubstanceMattersUtil;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
-import org.terasology.tintOverlay.TintOverlayIconComponent;
 
 import java.util.Optional;
 

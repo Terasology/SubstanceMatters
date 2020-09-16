@@ -13,10 +13,10 @@ import org.terasology.gestalt.assets.AssetDataProducer;
 import org.terasology.gestalt.assets.ResourceUrn;
 import org.terasology.gestalt.assets.module.annotations.RegisterAssetDataProducer;
 import org.terasology.gestalt.naming.Name;
+import org.terasology.itemRendering.tintOverlay.TintOverlayTextureProducer;
 import org.terasology.substanceMatters.components.MaterialCompositionComponent;
 import org.terasology.substanceMatters.components.MaterialItemComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
-import org.terasology.tintOverlay.TintOverlayTextureProducer;
 
 import java.io.IOException;
 import java.util.Collections;

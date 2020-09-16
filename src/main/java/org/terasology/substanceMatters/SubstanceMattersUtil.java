@@ -4,8 +4,8 @@ package org.terasology.substanceMatters;
 
 import org.terasology.engine.entitySystem.prefab.Prefab;
 import org.terasology.engine.utilities.Assets;
+import org.terasology.itemRendering.tintOverlay.TintOverlayIconComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
-import org.terasology.tintOverlay.TintOverlayIconComponent;
 
 import java.util.Optional;
 

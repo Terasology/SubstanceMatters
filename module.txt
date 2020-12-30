@@ -1,17 +1,36 @@
 {
-    "id": "SubstanceMatters",
-    "version": "2.0.0",
-    "author": "The Terasology Foundation",
-    "displayName": "SubstanceMatters",
-    "description": "Adds systems for tracking the composition of items.  Also adds world generation for some core ores if OreGeneration is enabled.",
-    "dependencies": [
-        { "id": "CoreAssets", "minVersion": "2.0.1" },
-        { "id": "Fluid", "minVersion": "2.0.0" },
-        { "id": "Inventory", "minVersion": "1.1.0" },
-        { "id": "ItemRendering", "minVersion": "1.1.0" },
-        { "id": "OreGeneration", "minVersion": "2.0.0", "optional": true },
-        { "id": "Workstation", "minVersion": "1.1.0" }
-    ],
-    "isServerSideOnly": false,
-    "isLibrary": true
+  "id": "SubstanceMatters",
+  "version": "2.1.0-SNAPSHOT",
+  "author": "The Terasology Foundation",
+  "displayName": "SubstanceMatters",
+  "description": "Adds systems for tracking the composition of items.  Also adds world generation for some core ores if OreGeneration is enabled.",
+  "dependencies": [
+    {
+      "id": "CoreAssets",
+      "minVersion": "2.0.1"
+    },
+    {
+      "id": "Fluid",
+      "minVersion": "2.0.0"
+    },
+    {
+      "id": "Inventory",
+      "minVersion": "1.1.0"
+    },
+    {
+      "id": "ItemRendering",
+      "minVersion": "1.1.0"
+    },
+    {
+      "id": "OreGeneration",
+      "minVersion": "2.0.0",
+      "optional": true
+    },
+    {
+      "id": "Workstation",
+      "minVersion": "1.1.0"
+    }
+  ],
+  "isServerSideOnly": false,
+  "isLibrary": true
 }

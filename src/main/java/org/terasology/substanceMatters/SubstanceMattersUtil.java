@@ -15,8 +15,8 @@
  */
 package org.terasology.substanceMatters;
 
-import org.terasology.utilities.Assets;
-import org.terasology.entitySystem.prefab.Prefab;
+import org.terasology.engine.entitySystem.prefab.Prefab;
+import org.terasology.engine.utilities.Assets;
 import org.terasology.substanceMatters.components.SubstanceComponent;
 import org.terasology.tintOverlay.TintOverlayIconComponent;
 

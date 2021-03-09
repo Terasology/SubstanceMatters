@@ -16,7 +16,7 @@
 package org.terasology.substanceMatters.processParts;
 
 import com.google.common.collect.Maps;
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
 
 import java.util.Map;
 

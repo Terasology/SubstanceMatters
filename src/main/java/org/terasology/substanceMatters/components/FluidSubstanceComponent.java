@@ -15,7 +15,7 @@
  */
 package org.terasology.substanceMatters.components;
 
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
 
 public class FluidSubstanceComponent implements Component {
 }

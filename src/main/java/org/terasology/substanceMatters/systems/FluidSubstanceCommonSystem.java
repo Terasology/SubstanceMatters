@@ -16,12 +16,12 @@
 package org.terasology.substanceMatters.systems;
 
 import com.google.common.collect.Iterables;
-import org.terasology.utilities.Assets;
-import org.terasology.entitySystem.prefab.Prefab;
-import org.terasology.entitySystem.systems.BaseComponentSystem;
-import org.terasology.entitySystem.systems.RegisterSystem;
+import org.terasology.engine.entitySystem.prefab.Prefab;
+import org.terasology.engine.entitySystem.systems.BaseComponentSystem;
+import org.terasology.engine.entitySystem.systems.RegisterSystem;
+import org.terasology.engine.registry.In;
+import org.terasology.engine.utilities.Assets;
 import org.terasology.fluid.system.FluidRegistry;
-import org.terasology.registry.In;
 import org.terasology.substanceMatters.components.FluidSubstanceComponent;
 import org.terasology.substanceMatters.components.SubstanceComponent;
 

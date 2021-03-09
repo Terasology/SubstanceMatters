@@ -17,15 +17,15 @@ package org.terasology.substanceMatters.components;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.terasology.entitySystem.Component;
-import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.entitySystem.prefab.Prefab;
-import org.terasology.entitySystem.prefab.PrefabManager;
-import org.terasology.logic.inventory.InventoryUtils;
-import org.terasology.logic.inventory.ItemDifferentiating;
-import org.terasology.network.Replicate;
-import org.terasology.registry.CoreRegistry;
-import org.terasology.utilities.Assets;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.entitySystem.entity.EntityRef;
+import org.terasology.engine.entitySystem.prefab.Prefab;
+import org.terasology.engine.entitySystem.prefab.PrefabManager;
+import org.terasology.engine.logic.inventory.InventoryUtils;
+import org.terasology.engine.logic.inventory.ItemDifferentiating;
+import org.terasology.engine.network.Replicate;
+import org.terasology.engine.registry.CoreRegistry;
+import org.terasology.engine.utilities.Assets;
 
 import java.util.Collections;
 import java.util.Comparator;

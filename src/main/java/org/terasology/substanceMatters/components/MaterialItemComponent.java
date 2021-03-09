@@ -15,8 +15,8 @@
  */
 package org.terasology.substanceMatters.components;
 
-import org.terasology.entitySystem.Component;
-import org.terasology.logic.inventory.ItemDifferentiating;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.logic.inventory.ItemDifferentiating;
 
 /**
  * Attach this to items that are made of a particular substance.  The icon will be tinted to the substance's definition.

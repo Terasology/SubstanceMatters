@@ -1,31 +1,18 @@
-/*
- * Copyright 2014 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 package org.terasology.substanceMatters.components;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.terasology.engine.entitySystem.Component;
 import org.terasology.engine.entitySystem.entity.EntityRef;
 import org.terasology.engine.entitySystem.prefab.Prefab;
 import org.terasology.engine.entitySystem.prefab.PrefabManager;
-import org.terasology.module.inventory.systems.InventoryUtils;
-import org.terasology.module.inventory.components.ItemDifferentiating;
 import org.terasology.engine.network.Replicate;
 import org.terasology.engine.registry.CoreRegistry;
 import org.terasology.engine.utilities.Assets;
+import org.terasology.gestalt.entitysystem.component.Component;
+import org.terasology.module.inventory.components.ItemDifferentiating;
+import org.terasology.module.inventory.systems.InventoryUtils;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -35,7 +22,7 @@ import java.util.Map;
 /**
  * A list of the contents of an item.  Not intended to be added directly to a prefab with json.
  */
-public class MaterialCompositionComponent implements Component, ItemDifferentiating {
+public class MaterialCompositionComponent implements Component<MaterialCompositionComponent>, ItemDifferentiating {
     /**
      * A map of the substance prefab and how much is contained
      */
@@ -177,5 +164,10 @@ public class MaterialCompositionComponent implements Component, ItemDifferentiat
 
         display = display.trim();
         return display;
+    }
+
+    @Override
+    public void copy(MaterialCompositionComponent other) {
+        this.contents = Maps.newHashMap(other.contents);
     }
 }

@@ -35,7 +35,7 @@ public class MaterialItemComponent implements Component<MaterialItemComponent>, 
     }
 
     @Override
-    public void copy(MaterialItemComponent other) {
+    public void copyFrom(MaterialItemComponent other) {
         this.icon = other.icon;
     }
 }

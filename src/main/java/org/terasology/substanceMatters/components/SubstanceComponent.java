@@ -15,7 +15,7 @@ public class SubstanceComponent implements Component<SubstanceComponent> {
     public float brightnessScale = 1f;
 
     @Override
-    public void copy(SubstanceComponent other) {
+    public void copyFrom(SubstanceComponent other) {
         this.name = other.name;
         this.description = other.description;
         this.hue = other.hue;

@@ -12,7 +12,7 @@ public class TransferSubstancesComponent implements Component<TransferSubstances
     boolean inject = true;
 
     @Override
-    public void copy(TransferSubstancesComponent other) {
+    public void copyFrom(TransferSubstancesComponent other) {
         this.extract = other.extract;
         this.inject = other.inject;
     }

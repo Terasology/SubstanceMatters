@@ -167,7 +167,7 @@ public class MaterialCompositionComponent implements Component<MaterialCompositi
     }
 
     @Override
-    public void copy(MaterialCompositionComponent other) {
+    public void copyFrom(MaterialCompositionComponent other) {
         this.contents = Maps.newHashMap(other.contents);
     }
 }

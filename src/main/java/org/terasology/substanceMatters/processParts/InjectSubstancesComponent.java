@@ -19,7 +19,7 @@ public class InjectSubstancesComponent implements Component<InjectSubstancesComp
     public Map<String, String> replace = Maps.newHashMap();
 
     @Override
-    public void copy(InjectSubstancesComponent other) {
+    public void copyFrom(InjectSubstancesComponent other) {
         this.add = Maps.newHashMap(other.add);
         this.replace = Maps.newHashMap(other.replace);
     }

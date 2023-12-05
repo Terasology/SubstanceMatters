@@ -8,8 +8,8 @@ import org.terasology.gestalt.entitysystem.component.Component;
  * Creates an material item containing the materials that it is composed of based on the original input items.  The item will appear like the largest amount of substance.
  */
 public class TransferSubstancesComponent implements Component<TransferSubstancesComponent> {
-    boolean extract = true;
-    boolean inject = true;
+    public boolean extract = true;
+    public boolean inject = true;
 
     @Override
     public void copyFrom(TransferSubstancesComponent other) {
